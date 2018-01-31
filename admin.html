@@ -1,0 +1,593 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title id="title"></title>
+    <link rel="icon" type="image/icon" href="img/faviconPng.ico">
+    <!-- Bootstrap -->
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/userStyle.css">
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/dialogStyle.css" />
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="http://bootstrap-ru.com/204/assets/js/bootstrap-tab.js"></script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+
+    <script src="http://bootstrap-ru.com/204/assets/js/bootstrap-dropdown.js"></script>
+
+</head>
+
+
+<style>
+    * {
+        outline: 0 !important;
+        font-family: ubuntu;
+    }
+
+
+    body {
+        font-size: 13px;
+    }
+
+    .navbar-default .navbar-nav>li>a {
+        color: whitesmoke;
+    }
+
+    .navbar-default .navbar-nav>li>a:hover {
+        color: #162449;
+        background: whitesmoke;
+    }
+
+    .navbar-default .navbar-toggle:hover {
+        background-color: transparent;
+        color: whitesmoke;
+
+    }
+
+    .navbar-default .navbar-toggle {
+        border: none;
+    }
+
+    button.navbar-toggle.collapsed.glyphicon.glyphicon-menu-hamburger {
+        color: whitesmoke;
+    }
+
+    button.navbar-toggle.collapsed.glyphicon.glyphicon-menu-hamburger:focus {
+        color: whitesmoke;
+        background-color: transparent;
+    }
+
+    container {
+        padding-left: 0px;
+        padding-right: 0px;
+        width: 100%;
+    }
+
+    /*    ///////////////////////////*/
+
+    .nav-tabs {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary {
+        background-color: rgba(0, 0, 0, 0.1);
+        border: none;
+        color: #337ab7;
+    }
+
+    .btn-primary:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+        border: none;
+        color: #337ab7;
+    }
+
+    .form-horizontal .control-label {
+        font-weight: 100;
+    }
+
+    /*    ///////////////////Photo style///////////////////*/
+
+    .image-preview-input {
+        position: relative;
+        overflow: hidden;
+        margin: 0px;
+        color: #333;
+        background-color: #fff;
+        border-color: #ccc;
+    }
+
+    .image-preview-input input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+
+    .image-preview-input-title {
+        margin-left: 2px;
+    }
+
+    .profile-sidebar {
+
+        padding: 20px;
+        /*        margin-top: 20px;*/
+    }
+
+    @media (max-width: 395px) {
+
+
+        .col-md-12 {
+            padding-left: 0px;
+            padding-right: 0px;
+            width: 100%;
+        }
+
+        .profile-sidebar {
+            padding: 0;
+            /*
+            margin-bottom: 20px;
+            margin-top: 20px;
+*/
+        }
+        .main-dialog {
+            display: block;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            background-color: rgba(0, 0, 0, 0.1);
+            max-height: 90px;
+            padding-top: 10px;
+            padding-bottom: 110px;
+            padding-left: 10px;
+        }
+        .main-dialog:hover {
+
+            background-color: rgba(0, 0, 0, 0.03);
+            cursor: pointer;
+        }
+
+    }
+
+</style>
+
+<body>
+    <div class="container-fluid" style="padding-left: 0;padding-right: 0">
+        <header>
+            <nav class="navbar navbar-static-top">
+                        <div style="background-color: #4d75a3;">
+<!--
+                <div class="container-fluid" style="background-color: #162449;    border-radius: 73px;
+                    border-top-left-radius: 70px;
+                    border-top-right-radius: 70px;
+                    border-bottom-right-radius: 70px;
+                    border-bottom-left-radius: 70px;">
+-->
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle navbar-toggle-sidebar collapsed" id="myMethod">Меню</button>
+                        <a class="navbar-brand" href="user.html">
+				        <img src="img/IndexLogo.png" style="max-width: 115px;">
+				        </a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <form class="navbar-form navbar-right">
+                            <!--
+                            <div class="form-group">
+                                <input type="text" name="q" class="form-control" placeholder="Search">
+                            </div>
+                            <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+-->
+                        </form>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
+        </header>
+    </div>
+    <div class="container" style="">
+
+        <main>
+
+            <div class="col-sm-1 col-md-2 col-lg-2">
+                <div class="row">
+                    <!-- uncomment code for absolute positioning tweek see top comment in css -->
+                    <!-- Menu -->
+                    <div class="side-menu">
+                        <nav class="navbar navbar-default" role="navigation">
+                            <!-- Main Menu -->
+                            <div class="side-menu-container">
+                                <ul class="nav navbar-nav">
+                                    <li class="active" onclick="getUser()"><a href="user.html"><span class="glyphicon glyphicon-home"></span> Моя сторінка</a></li>
+                                    <li class="active"><a href="#"><span class="glyphicon glyphicon-comment"></span> Новини</a></li>
+                                    <li class="active"><a href="dialog.html"><span class="glyphicon glyphicon-envelope"></span> Повідомлення<span class="badge" id="message-incoming" style="margin-left: 5px"></span></a></li>
+                                    <li class="active"><a href="edit_my_informations.html"><span class="glyphicon glyphicon-wrench"></span> Налаштування</a></li>
+                                    <li class="active"><a href="search.html"><span class="glyphicon glyphicon-search"></span> Пошук</a></li>
+                                    <li class="active" id="log-out"><a href="index.html"><span class="glyphicon glyphicon-log-out"></span> Вихід</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row profile">
+                    <div class="col-lg-9">
+                        <!--
+                        <div class="profile-sidebar" style="padding: 2px;">
+
+
+
+
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon" style="border: 0;background-color: rgba(0,0,0,0)"><i class="fa fa-envelope fa glyphicon glyphicon-search" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" id="search-dialog" style="border: 0;background-color: rgba(0,0,0,0);outline: none" placeholder="Пошук..." />
+                                </div>
+                            </div>
+
+                        </div>
+-->
+
+                        <!--                       //Dialogs list-->
+                        <div class="profile-sidebar">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 count-dialog-class">
+                                <span class="count-field" id="count-dialog-and-message"></span>
+                            </div>
+
+
+                            <ul id="dialog-list" style="padding-left: 1px;padding-right: 1px;">
+
+                            </ul>
+
+
+
+                            <!--
+                            <div class="main-dialog">
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 user-name-div">
+
+                                    <p id="user-name">Вадим Дорошевич <small id="user-line">Online</small> </p>
+                                    <p id="last-message-date">21:31 <span> 27/05/2018</span></p>
+
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 user-name-div">
+
+                                    <img class="pull-left img-responsive" id="user-photo" src="img/300x300.png">
+                                    <div class="div-text">
+                                        <p class="text-center" id="last-message">Як справи?</p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="main-dialog">
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 user-name-div">
+
+                                    <p id="user-name">Вадим Дорошевич <small id="user-line">Online</small> </p>
+                                    <p id="last-message-date">21:31 <span> 27/05/2018</span></p>
+
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 user-name-div">
+
+                                    <img class="pull-left img-responsive" id="user-photo" src="img/300x300.png">
+                                    <div class="div-text">
+                                        <p class="text-center" id="last-message">Як справи?</p>
+                                    </div>
+
+                                </div>
+                            </div>
+-->
+
+                        </div>
+                        <!--                        //End dialog list-->
+
+                    </div>
+                    <!--
+                    <div class="col-lg-3">
+                        <div class="profile-sidebar" style="padding: 0">
+
+                            <div class="sort-information-style">
+                                <h5>Найкрайкращі співбесідники</h5>
+                            </div>
+                            <div class="main-dialog">
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 user-name-div">
+
+                                    <p id="user-name">Вадим Дорошевич</p>
+
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 user-name-div">
+
+                                    <img class="pull-left img-responsive" id="user-photo" src="img/300x300.png">
+                                    <div class="div-text">
+                                        <p class="text-center" id="last-message">12034 повідомлень!</p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+-->
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="pull-left footer" style="text-align: center">
+            <p class="col-md-12">
+                <hr class="divider"> Copyright &COPY; 2018 <a href="#">HiPasserby</a>
+        </footer>
+
+    </div>
+
+    <script>
+        //        notification();
+        var thisUser;
+
+        $.ajax({
+            "url": "http://localhost:8080/login",
+            'method': 'GET',
+            'contentType': 'application/json',
+            'dataType': 'json',
+            'headers': {
+                'A-Token': localStorage.getItem('A-Token'),
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            'success': function(data) {
+                thisUser = data;
+                getUsersDialogs(data.id)
+            },
+        });
+
+        function getUsersDialogs(Object) {
+            var findOneByIdRequest = {
+                'id': Object
+            }
+            $.ajax({
+                "url": "http://localhost:8080/dialog/users_dialog",
+                'method': 'POST',
+                'contentType': 'application/json',
+                'dataType': 'json',
+                'data': JSON.stringify(findOneByIdRequest),
+                'headers': {
+                    'A-Token': localStorage.getItem('A-Token'),
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                'success': function(data) {
+                    var data = data;
+
+                    var divStyle;
+
+                    var textStyle;
+
+                    for (var i = 0; i < data.length; i++) {
+                        var user;
+                        if (thisUser.id != data[i].users[0].id) {
+                            user = data[i].users[0];
+
+                        } else {
+                            user = data[i].users[1];
+                        }
+
+                        var m = [
+                            'Січня',
+                            'Лютого',
+                            'Березня',
+                            'Квітня',
+                            'Травня',
+                            'Червня',
+                            'Липня',
+                            'Серпня',
+                            'Вересня',
+                            'Жовтня',
+                            'Листопада',
+                            'Грудня'
+                        ];
+
+                        var a = new Date(data[i].date);
+                        var b = ('00' + a.getHours()).slice(-2) + ':' + ('00' + a.getMinutes()).slice(-2) +
+                            ' ' + ('00' + a.getDate()).slice(-2) + ' ' + m[a.getMonth()];
+
+                        var lastMessage;
+                        if (data[i].lastMessage !== undefined) {
+                            lastMessage = data[i].lastMessage
+                        } else {
+                            lastMessage = ""
+                        }
+
+                        console.log(thisUser.id);
+                        console.log(data[i].idAuthorOfLastMessage);
+
+                        if (data[i].idAuthorOfLastMessage != thisUser.id & data[i].isReadLastMessage == 0) {
+                            divStyle = "style='background-color:rgba(0,0,0,0.06)'";
+                        } else {
+                            divStyle = "style='background-color:none'";
+                        }
+
+                        if (data[i].idAuthorOfLastMessage == thisUser.id) {
+                            if (data[i].isReadLastMessage == 0) {
+                                textStyle = "style='background-color:rgba(0,0,0,0.06)'";
+                            } else {
+                                textStyle = "style='background-color:none'";
+                            }
+                        }
+
+                        $('#dialog-list').append(
+
+                            "<div class='main-dialog' " + divStyle + " onclick='goDialog(" + data[i].id + ")'>" +
+
+                            "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 user-name-div'>" +
+
+                            "<p id='user-name'>" + "<span>" + user.firstName + " " + user.lastName + "<span>" + "<small id='user-line'></small> </p>" +
+                            "<p id='last-message-date'>" + b + "</p>" +
+
+                            "</div>" +
+
+                            "<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 user-name-div'>" +
+
+                            "<img onclick='goUser(" + user.id + ")' class='pull-left img-circle img-responsive' id='user-photo'  src='http://localhost:8080" + user.photo + "'>" +
+                            "<div class='div-text'>" +
+                            "<p class='text-center' " + textStyle + " id='last-message'>" + lastMessage + "</p>" +
+                            "</div>" +
+
+                            "</div>" +
+                            "</div>"
+                        );
+
+
+
+
+                    }
+
+                    $('#count-dialog-and-message').empty();
+                    $('#count-dialog-and-message').append('У вас ' + data.length + ' діалоги(ів)');
+                    //                    $("#photo-field").attr("src", 'http://localhost:8080' + data.photo);
+                    $('#title').append("Діалоги користувача " + thisUser.firstName + " " + thisUser.lastName);
+
+                },
+                'error': function(error) {
+                    console.log(error);
+                }
+            });
+        }
+
+
+
+
+
+
+        function getUser() {
+
+            $.ajax({
+                "url": "http://localhost:8080/login",
+                'method': 'GET',
+                'contentType': 'application/json',
+                'dataType': 'json',
+                'headers': {
+                    'A-Token': localStorage.getItem('A-Token'),
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                'success': function(data) {
+                    document.location = "user.html?id=" + data.id;
+                },
+                'error': function(error) {
+                    console.log(error);
+                    document.location.href = 'index.html';
+                }
+            });
+        }
+
+        //        $(function() {
+        //
+        //            $.ajax({
+        //                "url": "http://localhost:8080/dialog/notification_news",
+        //                'method': 'GET',
+        //                'contentType': 'application/json',
+        //                'dataType': 'json',
+        //                'headers': {
+        //                    'A-Token': localStorage.getItem('A-Token'),
+        //                    'Content-Type': 'application/json;charset=utf-8'
+        //                },
+        //                'success': function(data) {
+        ////                    var count = $('#message-incoming').val();
+        //                    if(data>0){
+        //                        $('#message-incoming').append(data);
+        //                        $('#title').prepend("("+data+")");
+        //                    }
+        //                },
+        //                'error': function(error) {
+        //                    console.log(error);
+        //                }
+        //            });
+        //        });
+
+
+        $(function() {
+
+            $.ajax({
+                "url": "http://localhost:8080/dialog/notification",
+                'method': 'GET',
+                'contentType': 'application/json',
+                'dataType': 'json',
+                'headers': {
+                    'A-Token': localStorage.getItem('A-Token'),
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                'success': function(data) {
+                    //                    var count = $('#message-incoming').val();
+                    if (data > 0) {
+                        $('#message-incoming').append(data);
+                        $('#title').prepend("(" + data + ")");
+                    }
+                },
+                'error': function(error) {
+                    console.log(error);
+                }
+            });
+        });
+
+        function goDialog(Object) {
+            var id = Object;
+
+            document.location = "message.html?id=" + id;
+        }
+
+
+        $(window).resize(function() {
+            var width = $(window).width();
+            if (width < 1200) {
+                $("#myMethod").collapse('hide');
+            }
+        });
+
+
+        $(function() {
+            $('.navbar-toggle-sidebar').click(function() {
+                $('.navbar-nav').toggleClass('slide-in');
+                $('.side-body').toggleClass('body-slide-in');
+                $('#search').removeClass('in').addClass('collapse').slideUp(200);
+            });
+
+
+
+
+            $('#search-trigger').click(function() {
+                $('.navbar-nav').removeClass('slide-in');
+                $('.side-body').removeClass('body-slide-in');
+                $('.search-input').focus();
+            });
+        });
+
+
+        //Вихід з аккаунту
+        $('#log-out').click(function() {
+            localStorage.removeItem('A-Token');
+        });
+
+    </script>
+
+    <!--    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

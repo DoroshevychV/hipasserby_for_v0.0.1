@@ -1,0 +1,236 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>PRactic</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<style>
+    #registrationSignIn {
+        position: fixed;
+        width: 40%;
+        float: left;
+    }
+    
+    #events {
+        width: 30%;
+        float: right;
+    }
+    
+    #users {
+        width: 30%;
+        float: right;
+    }
+    
+    ul h3 {
+        color: darkslategray;
+    }
+    
+    ul b {
+        color: dimgray;
+    }
+    
+    ul {
+        float: right;
+        position: absolute;
+        color: green;
+    }
+    
+    i {
+        color: forestgreen;
+    }
+</style>
+
+<body>
+    <!--    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <div id="registrationSignIn">
+        <h3>Registration</h3>
+        <br>
+        <br>
+        <input type="file" id="file">
+        <button onclick="readFile(document.getElementById('file'))">Upload</button>
+         First Name
+        <br>
+        <input type="text" id="firstName">
+        <br> Last Name
+        <br>
+        <input type="text" id="lastName">
+        <br> Email
+        <br>
+        <input type="email" id="email">
+        <br> Password
+        <br>
+        <input type="password" id="password">
+        <br>
+        <br>
+        <button id="registrationButton">Save</button>
+        <br>
+        <br>
+        <h3>Sign in</h3> Email
+        <br>
+        <input id="loginSignIn">
+        <br> Password
+        <br>
+        <input type="password" id="passwordSignIn">
+        <br>
+        <br>
+        <button id="loginBtn">Login</button>
+    </div>
+    <div id="users">
+        <h2>All Users</h2>
+        <button id="updateUserList">UPDATE</button>
+        <ul id="usersList"> </ul>
+    </div>
+    <div id="events">
+        <h2>Events</h2>
+        <ul id="eventsList"> </ul>
+    </div>
+    <!--    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <script>
+        
+        function readFile(object) {
+            var file = object.files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function() {
+                console.log("loading...");
+                console.log(reader.result);
+                var base64picture = reader.result;
+                var mail = $('#mail').val();
+                var login = $('#login').val();
+                var password = $('#password').val();
+
+                var User = {
+                    'mail': mail,
+                    'login': login,
+                    'password': password, 
+                    "photo": base64picture
+                }
+                $.ajax({
+                    'url': 'http://localhost:8080/user',
+                    'type': "PUT",
+                    'contentType': 'application/json',
+                    'dataType': 'json',
+                    'data': JSON.stringify(User),
+                    'success': function(data) {
+                        console.log(data);
+                    },
+                    'error': function(error) {
+                        alert('ERROR');
+                    }
+
+
+                });
+            }
+        }
+        //-------------------РЕЄСТРАЦІЯ КОРИСТУВАЧА----------------------//
+        $('#registrationButton').click(function () {
+            var firstName = $("#firstName").val();
+            var lastName = $("#lastName").val();
+            var email = $("#email").val();
+            var password = $("#password").val();
+            var person = {
+                "firstName": firstName
+                , "lastName": lastName
+                , "email": email
+                , "password": password
+            }
+            $.ajax({
+                "url": 'http://localhost:8080/user'
+                , "type": "PUT"
+                , "contentType": "application/json"
+                , "dataType": "json"
+                , "data": JSON.stringify(person)
+                , "success": function (data) {
+                    $('#eventsList').append("<li>" + "<h3>" + "Registration of User:" + "</h3>" + "<b>Name:</b> " + firstName + "<br>" + "<b>Last name:</b> " + lastName + "<br>" + "<b>Email adress:</b> " + email + "<br>" + "<b>Password:</b> " + password + "</li>");
+                    $('#usersList').append("<li>" + "<h3>" + "New User:" + "</h3>" + "<b>Name:</b> " + data.firstName + "<br>" + "<b>Last name:</b> " + data.lastName + "<br>" + "<b>Email adress:</b> " + data.email + "<br>" + "<b>Password:</b> " + data.password + "<br>" + '<button class="deleteUser" value="' + data.id + '">DELETE</button>' + "</li>");
+                    del();
+                }
+                , "error": function (error) {
+                    console.log("" + error);
+                }
+            });
+        });
+        //-------------------ВИВІД ЗАРЕЄСТРОВАНИХ КОРИСТУВАЧІВ З БАЗИ ДАНИХ----------------------//
+        $('#updateUserList').click(function () {
+            var firstName = $("#firstName").val();
+            var lastName = $("#lastName").val();
+            var email = $("#email").val();
+            var password = $("#password").val();
+            var person = {
+                "firstName": firstName
+                , "lastName": lastName
+                , "email": email
+                , "password": password
+            }
+            showUsers();
+        });
+        //------------------- ЛОГІНУВАННЯ  КОРИСТУВАЧІВ ----------------------//
+        $('#loginBtn').click(function () {
+            var login = $('#loginSignIn').val();
+            var password = $('#passwordSignIn').val();
+            var loginReq = {
+                'email': login
+                , 'password': password
+            };
+            $.ajax({
+                'url': 'http://localhost:8080/user'
+                , 'type': "POST"
+                , 'contentType': 'application/json'
+                , 'dataType': 'json'
+                , 'data': JSON.stringify(loginReq)
+                , 'success': function (data) {
+                    if (data == true) {
+                        $('#eventsList').append("<li>" + "<h3>" + "Login and Password are <i>TRUE</i> " + "</h3>" + "<b>Email adress:</b> " + login + "<br>" + "<b>Password:</b> " + password + "</li>");
+                    }
+                }
+                , 'error': function (error) {
+                    alert(JSON.parse(error.responseText).message);
+                }
+            });
+        });
+        //-------------------ВИДАЛЕННЯ ЗАРЕЄСТРОВАНИХ КОРИСТУВАЧІВ З БАЗИ ДАНИХ----------------------//
+        function del() {
+            $('.deleteUser').click(function () {
+                var deleteReq = {
+                    'id': this.value
+                }
+                $.ajax({
+                    'url': 'http://localhost:8080/user'
+                    , 'type': "DELETE"
+                    , 'contentType': 'application/json'
+                    , 'dataType': 'json'
+                    , 'data': JSON.stringify(deleteReq)
+                    , 'success': function (data) {
+                        if (data) {
+                            $('#usersList').empty();
+                            showUsers();
+                        }
+                    }
+                });
+            });
+        }
+
+        function showUsers() {
+            $.ajax({
+                "url": 'http://localhost:8080/user'
+                , "type": "GET"
+                , "contentType": "application/json"
+                , "dataType": "json"
+                , //                "data": JSON.stringify(person),
+                "success": function (data) {
+                    $('#usersList').empty();
+                    for (var i = 0; i < data.length; i++) {
+                        $('#usersList').append("<li>" + "<h3>" + "User " + (i + 1) + "</h3>" + "<b>Name:</b> " + data[i].firstName + "<br>" + "<b>Last name:</b> " + data[i].lastName + "<br>" + "<b>Email adress:</b> " + data[i].email + "<br>" + "<b>Password:</b> " + data[i].password + "<br>" + '<button class="deleteUser" value="' + data[i].id + '">DELETE</button>' + "</li>");
+                    }
+                    del();
+                }
+                , "error": function (error) {
+                    console.log("" + error);
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

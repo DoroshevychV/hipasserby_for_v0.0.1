@@ -1,0 +1,171 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>HiPasserby</title>
+    <link rel="icon" type="image/icon" href="img/faviconPng.ico">
+    <!-- Bootstrap -->
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<style>
+    body {
+        background-image: url(img/registrationPhotoBackground.jpg);
+        background-repeat: no-repeat;
+        background-position: left, right;
+        background-attachment: fixed;
+        color: #FFD;
+    }
+
+</style>
+<!--////////////////////////////////////////////////////////////////LOGIN PAGE//////////////////////////////////////////////////////////////////-->
+
+<body>
+    <div class="container-fluir" id="activation_container" style="display: none">
+        <div class="row main">
+            <div class="panel-heading">
+                <div class="panel-title text-center">
+                    <img src="img/oneLogo1.png" alt="" style="max-width: 100px;">
+                </div>
+            </div>
+            <div class="main-login main-center">
+                <form class="form-horizontal" method="post" action="#">
+
+                    <div class="form-group">
+                        <label for="email" class="cols-sm-2 control-label">Email</label>
+                        <span id="email-error-list-activate" style="color: IndianRed"></span>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon "><i class="fa fa-envelope fa glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Email" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="password" class="cols-sm-2 control-label">Код підтвердження</label>
+                        <span id="activate-code-error-list-login" style="color: IndianRed"></span>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg glyphicon glyphicon-lock" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="password" id="activate-code" placeholder="Код підтвердження" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group ">
+                        <button type="button" class="btn btn-primary btn-lg btn-block activation-button">Вхід</button>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="uk-overlay-panel uk-overlay-background uk-overlay-fade" style="text-align: center">
+
+
+                <div class="caption" style="text-align: center">
+                    <div class="panel-title text-center">
+                        <img src="img/oneLogo1.png" alt="" style="max-width: 100px;">
+                    </div>
+                    <h3>Активація облікового запису</h3>
+                    <p style="padding-right: 20px;padding-left: 20px">На вказаний вами email-пошту при реєстрації було відправлено секретний код - скопіюйте його та вставте в поле "Код підтвердження!"</p>
+                </div>
+            </div>
+            <div class="uk-overlay-panel2 uk-overlay-background uk-overlay-fade" style="text-align: center;">
+
+                <div class="panel-title text-center">
+                    <br>
+                    <img class="loginer" src="img/login_blue.png" alt="" style="max-width: 70px;cursor: pointer">
+                    <br>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <script>
+        ///////////////////////START RIGHT BUTTONS_MENU STYLE/CLICK ///////////////////
+
+        $("#activation_container").show(1300);
+
+        $('.loginer').click(function() {
+            $(document.location.href = 'home.html').show(1300);
+        });
+
+        ///////////////////////END RIGHT BUTTONS_MENU STYLE/CLICK ///////////////////
+
+
+        ///////////////////////START LOGiN/REGISTER/SEND OPERATIOND ///////////////////
+
+
+        $('.activation-button').click(function() {
+            $('#email-error-list-activate').empty();
+            $('#activate-code-error-list-activate').empty();
+            var email = $('#email').val();
+            var randomTokenOfActivation = $('#activate-code').val();
+            var activationUserRequest = {
+                'email': email,
+                'randomTokenOfActivation': randomTokenOfActivation
+            };
+            $.ajax({
+                'url': 'http://localhost:8080/signup/activation',
+                'type': "POST",
+                'contentType': 'application/json',
+                'dataType': 'json',
+                'data': JSON.stringify(activationUserRequest),
+                'success': function(data) {
+                    if (data == true) {
+                        alert('Вітаємо, ви активували свій обліковий запис, тепер ви можете увійти!');
+                        document.location.href = 'index.html';
+                    }
+                },
+                'error': function(error) {
+                    if (JSON.parse(error.responseText).message == "Обліковий запис з таким email незареєстровано!") {
+                        $('#email-error-list-activate').append(JSON.parse(error.responseText).message);
+                    } else if (JSON.parse(error.responseText).message == "Обліковий запис з таким email вже активовано!") {
+                        $('#email-error-list-activate').append(JSON.parse(error.responseText).message);
+                    } else if (JSON.parse(error.responseText).message == "Невірний код!") {
+                        $('#activate-code-error-list-activate').append(JSON.parse(error.responseText).message);
+                    } else {
+                        $('#email-error-list-activate').append("Невідома помилка!");
+                        $('#activate-code-error-list-activate').append("Невідома помилка!");
+                    }
+                }
+            });
+        });
+
+        ///////////////////////END LOGiN/REGISTER/SEND OPERATIOND ///////////////////
+        
+        $.ajax({
+            "url": "http://localhost:8080/login",
+            'method': 'GET',
+            'contentType': 'application/json',
+            'dataType': 'json',
+            'headers': {
+                'A-Token': localStorage.getItem('A-Token'),
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            'success': function(data) {
+                document.location.href = 'index.html';
+            },
+            'error': function(error) {
+
+            }
+        });
+
+    </script>
+
+
+    <!--    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

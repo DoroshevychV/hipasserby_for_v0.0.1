@@ -1,0 +1,1009 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title id="title"></title>
+    <link rel="icon" type="image/icon" href="img/faviconPng.ico">
+    <!-- Bootstrap -->
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/userStyle.css">
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="http://bootstrap-ru.com/204/assets/js/bootstrap-tab.js"></script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+
+    <script src="http://bootstrap-ru.com/204/assets/js/bootstrap-dropdown.js"></script>
+
+</head>
+
+
+<style>
+     * {
+
+        font-family: ubuntu;
+    }
+    body {
+        font-size: 13px;
+    }
+
+    .navbar-default .navbar-nav>li>a {
+        color: whitesmoke;
+    }
+
+    .navbar-default .navbar-nav>li>a:hover {
+        color: #162449;
+        background: whitesmoke;
+    }
+
+    .navbar-default .navbar-toggle:hover {
+        background-color: transparent;
+        color: whitesmoke;
+
+    }
+
+    .navbar-default .navbar-toggle {
+        border: none;
+    }
+
+    button.navbar-toggle.collapsed.glyphicon.glyphicon-menu-hamburger {
+        color: whitesmoke;
+    }
+
+    button.navbar-toggle.collapsed.glyphicon.glyphicon-menu-hamburger:focus {
+        color: whitesmoke;
+        background-color: transparent;
+    }
+
+    container {
+        padding-left: 0px;
+        padding-right: 0px;
+        width: 100%;
+    }
+
+    /*    ///////////////////////////*/
+
+    .nav-tabs {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary {
+        background-color: rgba(0, 0, 0, 0.1);
+        border: none;
+        color: #337ab7;
+    }
+
+    .btn-primary:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+        border: none;
+        color: #337ab7;
+    }
+
+    .form-horizontal .control-label {
+        font-weight: 100;
+    }
+
+    /*    ///////////////////Photo style///////////////////*/
+
+    .image-preview-input {
+        position: relative;
+        overflow: hidden;
+        margin: 0px;
+        color: #333;
+        background-color: #fff;
+        border-color: #ccc;
+    }
+
+    .image-preview-input input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+
+    .image-preview-input-title {
+        margin-left: 2px;
+    }
+
+</style>
+
+<body>
+    <div class="container-fluid" style="padding-left: 0;padding-right: 0">
+        <header>
+            <nav class="navbar navbar-static-top">
+            <div style="background-color: #4d75a3;">
+<!--                <div class="container-fluid" style="background-color: #162449; -->
+<!--
+                   border-radius: 73px;
+    border-top-left-radius: 70px;
+    border-top-right-radius: 70px;
+    border-bottom-right-radius: 70px;
+    border-bottom-left-radius: 70px;">
+-->
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle navbar-toggle-sidebar collapsed" id="myMethod">Меню</button>
+                        <a class="navbar-brand" href="user.html">
+				        <img src="img/IndexLogo.png" style="max-width: 115px;">
+				        </a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<!--
+                        <form class="navbar-form navbar-right">
+                            <div class="form-group">
+                                <input type="text" name="q" class="form-control" placeholder="Search">
+                            </div>
+                            <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                        </form>
+-->
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
+        </header>
+    </div>
+           <div class="container" style="">
+        <main>
+
+            <div class="col-sm-1 col-md-2 col-lg-2">
+                <div class="row">
+                    <!-- uncomment code for absolute positioning tweek see top comment in css -->
+                    <!-- Menu -->
+                    <div class="side-menu">
+                        <nav class="navbar navbar-default" role="navigation">
+                            <!-- Main Menu -->
+                            <div class="side-menu-container">
+                                <ul class="nav navbar-nav">
+                                    <li class="active" onclick="getUser()"><a href="user.html"><span class="glyphicon glyphicon-home"></span> Моя сторінка</a></li>
+                                    <li class="active"><a href="#"><span class="glyphicon glyphicon-comment"></span> Новини</a></li>
+                                    <li class="active"><a href="dialog.html"><span class="glyphicon glyphicon-envelope"></span> Повідомлення<span class="badge" id="message-incoming" style="margin-left: 5px"></span></a></li>
+                                    <li class="active"><a href="edit_my_informations.html"><span class="glyphicon glyphicon-wrench"></span> Налаштування</a></li>
+                                    <li class="active"><a href="search.html"><span class="glyphicon glyphicon-search"></span> Пошук</a></li>
+                                    <li class="active" id="log-out"><a href="index.html"><span class="glyphicon glyphicon-log-out"></span> Вихід</a></li>
+                                </ul>
+                            </div>
+                            <!-- /.navbar-collapse -->
+                        </nav>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!--            /////////display-->
+            <!--            <div class="col-sm-2 col-md-2 col-lg-2">-->
+
+
+            <div class="container-fluid">
+                <div class="row profile">
+                    <div class="col-lg-10">
+                        <div class="profile-sidebar">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#photo" aria-controls="photo" role="tab" data-toggle="tab">Фото</a></li>
+                                <li role="presentation"><a href="#main-info" aria-controls="main-info" role="tab" data-toggle="tab">Головна інформація</a></li>
+                                <li role="presentation"><a href="#education" aria-controls="education" role="tab" data-toggle="tab">Освіта</a></li>
+                                <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Контакти</a></li>
+                            </ul>
+
+                            <!-- Tab panes -->
+
+
+                            <div class="tab-content">
+
+
+
+
+                                <div role="tabpanel" class="tab-pane active" id="photo">
+
+
+
+                                    <div class="col-lg-12">
+
+                                        <div class="alert alert-success alert-autocloseable-success" id="photo-success-alert">
+                                            Інформацію збережено успішно!
+                                        </div>
+
+                                        <div class="alert alert-danger alert-autocloseable-danger" id="photo-danger-alert">
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="main-login main-center">
+                                        <form class="form-horizontal" method="post" action="#">
+
+
+
+                                            <!--                                            /////Start Upload Photo div////////////-->
+
+
+                                            <label for="username" class="cols-sm-2 control-label" style="padding-bottom: 30px;"><h4>Основна світлина</h4></label>
+                                            <!-- SIDEBAR USERPIC -->
+                                            <div class="profile-userpic" style="padding-bottom: 30px;">
+                                                <img src="" id="photo-field" class="img-responsive img-thumbnail text-center" alt="">
+                                            </div>
+                                            <!-- END SIDEBAR USERPIC -->
+
+                                            <div class="form-group">
+
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group image-preview">
+                                                        <input type="text" class="form-control image-preview-filename" disabled="disabled">
+                                                        <!-- don't give a name === doesn't send on POST/GET -->
+                                                        <span class="input-group-btn">
+                                                        <!-- image-preview-clear button -->
+                                                        <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                                        <span class="glyphicon glyphicon-remove"></span> Очистити
+                                                        </button>
+                                                        <!-- image-preview-input -->
+                                                        <div class="btn btn-default image-preview-input">
+                                                            <span class="glyphicon glyphicon-folder-open"></span>
+                                                            <span class="image-preview-input-title">Відкрити</span>
+                                                            <input type="file" id="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview" />
+                                                            <!-- rename it -->
+                                                        </div>
+                                                        </span>
+                                                    </div>
+                                                    <!-- /input-group image-preview [TO HERE]-->
+                                                </div>
+                                            </div>
+
+
+                                            <!--                                            //////BUTTON SAVE////////-->
+                                            <div class="form-group ">
+                                                <button type="button" class="btn btn-primary btn-lg btn-block photo-information-button" onclick="readFile(document.getElementById('file'))">Зберегти</button>
+                                            </div>
+
+
+                                            <!--                                            ////////END Upload Photo div////////////-->
+
+
+                                        </form>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div role="tabpanel" class="tab-pane" id="main-info">
+
+                                    <div class="col-md-12">
+
+                                        <div class="alert alert-success alert-autocloseable-success" id="main-info-success-alert">
+                                            Інформацію збережено успішно!
+                                        </div>
+
+                                        <div class="alert alert-danger alert-autocloseable-danger" id="main-info-danger-alert">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="main-login main-center">
+
+                                        <form class="form-horizontal" method="post" action="#">
+
+                                            <div class="form-group">
+                                                <label for="name" class="cols-sm-2 control-label">Ім'я</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-user fa glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                                                        <input type="text" class="form-control" name="name" id="firstName" placeholder="Введіть своє ім'я" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="username" class="cols-sm-2 control-label">Прізвище</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-users fa glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                                                        <input type="text" class="form-control" name="lastname" id="lastName" placeholder="Введіть своє прізвище" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="email" class="cols-sm-2 control-label">Країна</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-envelope fa glyphicon glyphicon-globe" aria-hidden="true"></i></span>
+                                                        <input type="text" class="form-control" id="country" value="" placeholder="Країна" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label for="password" class="cols-sm-2 control-label">Місто</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg glyphicon glyphicon-map-marker" aria-hidden="true"></i></span>
+                                                        <input type="text" class="form-control" name="city" id="city" placeholder="Місто" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="confirm" class="cols-sm-2 control-label ">Рік народження</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
+                                                        <select class="form-control" id="year-of-birth">
+                                                                <option>1970</option>
+                                                                <option>1971</option>
+                                                                <option>1972</option>
+                                                                <option>1973</option>
+                                                                <option>1974</option>
+                                                                <option>1975</option>
+                                                                <option>1976</option>
+                                                                <option>1977</option>
+                                                                <option>1978</option>
+                                                                <option>1979</option>
+                                                                <option>1980</option>
+                                                                <option>1980</option>
+                                                                <option>1981</option>
+                                                                <option>1982</option>
+                                                                <option>1983</option>
+                                                                <option>1984</option>
+                                                                <option>1985</option>
+                                                                <option>1986</option>
+                                                                <option>1987</option>
+                                                                <option>1988</option>
+                                                                <option>1989</option>
+                                                                <option>1990</option>
+                                                                <option>1991</option>
+                                                                <option>1992</option>
+                                                                <option>1993</option>
+                                                                <option>1994</option>
+                                                                <option>1995</option>
+                                                                <option>1996</option>
+                                                                <option>1997</option>
+                                                                <option>1998</option>
+                                                                <option>1999</option>
+                                                                <option>2000</option>
+                                                                <option>2001</option>
+                                                                <option>2002</option>
+                                                                <option>2003</option>
+                                                                <option>2004</option>
+                                                                <option>2005</option>
+                                                                <option>2006</option>
+                                                                <option>2007</option>
+                                                                <option>2008</option>
+                                                                <option>2009</option>
+                                                                <option>2010</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="confirm" class="cols-sm-2 control-label ">Місяць народження</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
+                                                        <select class="form-control" id="month-of-birth">
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
+                                                            <option>4</option>
+                                                            <option>5</option>
+                                                            <option>6</option>
+                                                            <option>7</option>
+                                                            <option>8</option>
+                                                            <option>9</option>
+                                                            <option>10</option>
+                                                            <option>11</option>
+                                                            <option>12</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="confirm" class="cols-sm-2 control-label ">День народження</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg glyphicon glyphicon-calendar" aria-hidden="true"></i></span>
+                                                        <select class="form-control" id="day-of-birth">
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
+                                                            <option>4</option>
+                                                            <option>5</option>
+                                                            <option>6</option>
+                                                            <option>7</option>
+                                                            <option>8</option>
+                                                            <option>9</option>
+                                                            <option>10</option>
+                                                            <option>11</option>
+                                                            <option>12</option>
+                                                            <option>13</option>
+                                                            <option>14</option>
+                                                            <option>15</option>
+                                                            <option>16</option>
+                                                            <option>17</option>
+                                                            <option>18</option>
+                                                            <option>19</option>
+                                                            <option>20</option>
+                                                            <option>21</option>
+                                                            <option>22</option>
+                                                            <option>23</option>
+                                                            <option>24</option>
+                                                            <option>25</option>
+                                                            <option>26</option>
+                                                            <option>27</option>
+                                                            <option>28</option>
+                                                            <option>29</option>
+                                                            <option>30</option>
+                                                            <option>31</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="confirm" class="cols-sm-2 control-label ">Мова</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg glyphicon glyphicon-text-background" aria-hidden="true"></i></span>
+                                                        <input type="text" class="form-control" name="language" id="language" placeholder="Мова" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="confirm" class="cols-sm-2 control-label ">Кредо</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg glyphicon glyphicon-flag" aria-hidden="true"></i></span>
+                                                        <input type="text" class="form-control" id="credo" placeholder="Мова" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="confirm" class="cols-sm-2 control-label ">Сімейний стан</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg glyphicon glyphicon-heart" aria-hidden="true"></i></span>
+                                                        <select class="form-control" id="marital-status">
+                                                            <option>Закоханий</option>
+                                                            <option>Одружений</option>
+                                                            <option>Неодружений</option>
+                                                            <option>В активному пошуку</option>
+                                                            <option>Зустрічаюсь</option>
+                                                            <option>Все складно</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group ">
+                                                <button type="button" class="btn btn-primary btn-lg btn-block main-info-button">Зберегти</button>
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="education">
+
+
+                                    <div class="col-lg-12">
+
+                                        <div class="alert alert-success alert-autocloseable-success" id="education-info-success-alert">
+                                            Інформацію збережено успішно!
+                                        </div>
+
+                                        <div class="alert alert-danger alert-autocloseable-danger" id="education-info-danger-alert">
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="main-login main-center">
+                                        <form class="form-horizontal" method="post" action="#">
+
+
+                                            <div class="form-group">
+                                                <label for="password" class="cols-sm-2 control-label">Школа</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg glyphicon glyphicon-book" aria-hidden="true"></i></span>
+                                                        <input type="text" class="form-control" id="school" placeholder="Школа" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="password" class="cols-sm-2 control-label">ВНЗ</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg glyphicon glyphicon-education" aria-hidden="true"></i></span>
+                                                        <input type="text" class="form-control" id="university" placeholder="ВНЗ" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group ">
+                                                <button type="button" class="btn btn-primary btn-lg btn-block education-information-button">Зберегти</button>
+                                            </div>
+
+
+                                        </form>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="contact">
+
+
+                                    <div class="col-lg-12">
+
+                                        <div class="alert alert-success alert-autocloseable-success" id="contact-info-success-alert">
+                                            Інформацію збережено успішно!
+                                        </div>
+
+                                        <div class="alert alert-danger alert-autocloseable-danger" id="contact-info-danger-alert">
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="main-login main-center">
+                                        <form class="form-horizontal" method="post" action="#">
+
+                                            <div class="form-group">
+                                                <label for="password" class="cols-sm-2 control-label">Email</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
+                                                        <input type="text" class="form-control" id="email" placeholder="Email" disabled/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="password" class="cols-sm-2 control-label">Номер телефону</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg glyphicon glyphicon-phone" aria-hidden="true"></i></span>
+                                                        <input type="text" class="form-control" id="phone-number" placeholder="Номер телефону" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group ">
+                                                <button type="button" class="btn btn-primary btn-lg btn-block contact-information-button">Зберегти</button>
+                                            </div>
+
+
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="pull-left footer" style="text-align: center">
+            <p class="col-md-12">
+                <hr class="divider"> Copyright &COPY; 2018 <a href="#">HiPasserby</a>
+        </footer>
+
+    </div>
+
+    <script>
+        var userPhoto;
+
+        $.ajax({
+            "url": "http://localhost:8080/login",
+            'method': 'GET',
+            'contentType': 'application/json',
+            'dataType': 'json',
+            'headers': {
+                'A-Token': localStorage.getItem('A-Token'),
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            'success': function(data) {
+                $("#photo-field").attr("src", 'http://localhost:8080' + data.photo);
+                userPhoto = 'http://localhost:8080' + data.photo;
+                $('#title').append("Редагування інформації користувача " + data.firstName + " " + data.lastName);
+                $('#firstName').val(data.firstName);
+                $('#lastName').val(data.lastName);
+                $('#country').val(data.country);
+                $('#city').val(data.city);
+                $('#year-of-birth').val(data.yearOfBirth);
+                $('#month-of-birth').val(data.monthOfBirth);
+                $('#day-of-birth').val(data.dayOfBirth);
+                $('#marital-status').val(data.maritalStatus);
+                $('#language').val(data.language);
+                $('#credo').val(data.credo);
+                $('#marital-status').val(data.maritalStatus);
+                $('#school').val(data.school);
+                $('#university').val(data.university);
+                $('#email').val(data.email);
+                $('#phone-number').val(data.phoneNumber);
+            },
+            'error': function(error) {
+                console.log(error);
+                document.location.href = 'index.html';
+            }
+        });
+        
+        function getUser() {
+
+            $.ajax({
+                "url": "http://localhost:8080/login",
+                'method': 'GET',
+                'contentType': 'application/json',
+                'dataType': 'json',
+                'headers': {
+                    'A-Token': localStorage.getItem('A-Token'),
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                'success': function(data) {
+                    document.location = "user.html?id=" + data.id;
+                },
+                'error': function(error) {
+                    console.log(error);
+                    document.location.href = 'index.html';
+                }
+            });
+
+        }
+
+        $(function() {
+
+            $.ajax({
+                "url": "http://localhost:8080/dialog/notification",
+                'method': 'GET',
+                'contentType': 'application/json',
+                'dataType': 'json',
+                'headers': {
+                    'A-Token': localStorage.getItem('A-Token'),
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                'success': function(data) {
+                    //                    var count = $('#message-incoming').val();
+                    if (data > 0) {
+                        $('#message-incoming').append(data);
+                        $('#title').prepend("(" + data + ")");
+                    }
+                },
+                'error': function(error) {
+                    console.log(error);
+                }
+            });
+        });
+
+
+        function readFile(object) {
+
+            var file = object.files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function() {
+                var base64picture = reader.result;
+                var editUserPhotoRequest = {
+                    "photo": base64picture
+                }
+
+                $.ajax({
+                    "url": "http://localhost:8080/edit/photo",
+                    "type": "PUT",
+                    "contentType": "application/json",
+                    "dataType": "json",
+                    "data": JSON.stringify(editUserPhotoRequest),
+                    'headers': {
+                        'A-Token': localStorage.getItem('A-Token'),
+                        'Content-Type': 'application/json'
+                    },
+                });
+            }
+        }
+
+
+
+        $('.main-info-button').click(function() {
+            var firstName = $('#firstName').val();
+            var lastName = $('#lastName').val();
+            var country = $('#country').val();
+            var city = $('#city').val();
+            var yearOfBirth = $('#year-of-birth').val();
+            var monthOfBirth = $('#month-of-birth').val();
+            var dayOfBirth = $('#day-of-birth').val();
+            var maritalStatus = $('#marital-status').val();
+            var language = $('#language').val();
+            var credo = $('#credo').val();
+
+
+            var mainInformationAboutUserRequest = {
+                'firstName': firstName,
+                'lastName': lastName,
+                'country': country,
+                'city': city,
+                'yearOfBirth': yearOfBirth,
+                'monthOfBirth': monthOfBirth,
+                'dayOfBirth': dayOfBirth,
+                'maritalStatus': maritalStatus,
+                'language': language,
+                'credo': credo,
+            }
+
+            $.ajax({
+                'url': 'http://localhost:8080/edit/main_information',
+                'type': "PUT",
+                'contentType': 'application/json;charset=utf-8',
+                'dataType': 'json',
+                'data': JSON.stringify(mainInformationAboutUserRequest),
+                'headers': {
+                    'A-Token': localStorage.getItem('A-Token'),
+                    'Content-Type': 'application/json'
+                },
+                'success': function(data) {
+                    $(function() {
+
+                        //                        $('#autoclosable-btn-success').prop("disabled", true);
+                        $('#main-info-success-alert').show();
+
+                        $('#main-info-success-alert').delay(5000).fadeOut("slow", function() {
+                            // Animation complete.
+                            //                            $('#autoclosable-btn-success').prop("disabled", false);
+                        });
+                    });
+                },
+                'error': function(error) {
+                    $(function() {
+                        $('#autoclosable-btn-danger').prop("disabled", true);
+                        $('#main-info-danger-alert').html(JSON.parse(error.responseText).message);
+                        $('#main-info-danger-alert').show();
+
+                        $('#main-info-danger-alert').delay(5000).fadeOut("slow", function() {
+                            // Animation complete.
+                            $('#autoclosable-btn-danger').prop("disabled", false);
+                        });
+                    });
+                    console.log(error);
+                }
+            });
+
+        });
+
+
+
+
+
+
+        $('.education-information-button').click(function() {
+            var school = $('#school').val();
+            var university = $('#university').val();
+
+
+            var educationInformationAboutUserRequest = {
+                'school': school,
+                'university': university,
+            };
+            $.ajax({
+                'url': 'http://localhost:8080/edit/education_information',
+                'type': "PUT",
+                'contentType': 'application/json;charset=utf-8',
+                'dataType': 'json',
+                'data': JSON.stringify(educationInformationAboutUserRequest),
+                'headers': {
+                    'A-Token': localStorage.getItem('A-Token'),
+                    'Content-Type': 'application/json'
+                },
+                'success': function(data) {
+
+                    $(function() {
+
+                        //                        $('#autoclosable-btn-success').prop("disabled", true);
+                        $('#education-info-success-alert').show();
+
+                        $('#education-info-success-alert').delay(5000).fadeOut("slow", function() {
+                            // Animation complete.
+                            //                            $('#autoclosable-btn-success').prop("disabled", false);
+                        });
+                    });
+
+                },
+                'error': function(error) {
+
+                    $(function() {
+                        $('#autoclosable-btn-danger').prop("disabled", true);
+                        $('#education-info-danger-alert').html(JSON.parse(error.responseText).message);
+                        $('#education-info-danger-alert').show();
+
+                        $('#education-info-danger-alert').delay(5000).fadeOut("slow", function() {
+                            // Animation complete.
+                            $('#autoclosable-btn-danger').prop("disabled", false);
+                        });
+                    });
+                    console.log(error);
+                }
+            });
+        });
+
+
+        $('.contact-information-button').click(function() {
+            var email = $('#email').val();
+            var phoneNumber = $('#phone-number').val();
+
+
+            var contactInformationAboutUserRequest = {
+                'email': email,
+                'phoneNumber': phoneNumber,
+            };
+            $.ajax({
+                'url': 'http://localhost:8080/edit/contact_information',
+                'type': "PUT",
+                'contentType': 'application/json;charset=utf-8',
+                'dataType': 'json',
+                'data': JSON.stringify(contactInformationAboutUserRequest),
+                'headers': {
+                    'A-Token': localStorage.getItem('A-Token'),
+                    'Content-Type': 'application/json'
+                },
+                'success': function(data) {
+
+                    $(function() {
+
+                        //                        $('#autoclosable-btn-success').prop("disabled", true);
+                        $('#contact-info-success-alert').show();
+
+                        $('#contact-info-success-alert').delay(5000).fadeOut("slow", function() {
+                            // Animation complete.
+                            //                            $('#autoclosable-btn-success').prop("disabled", false);
+                        });
+                    });
+
+                },
+                'error': function(error) {
+
+                    $(function() {
+                        $('#autoclosable-btn-danger').prop("disabled", true);
+                        $('#contact-info-danger-alert').html(JSON.parse(error.responseText).message);
+                        $('#contact-info-danger-alert').show();
+
+                        $('#contact-info-danger-alert').delay(5000).fadeOut("slow", function() {
+                            // Animation complete.
+                            $('#autoclosable-btn-danger').prop("disabled", false);
+                        });
+                    });
+                    console.log(error);
+                }
+            });
+        });
+
+
+
+
+        $(window).resize(function() {
+            var width = $(window).width();
+            if (width < 1200) {
+                $("#myMethod").collapse('hide');
+            }
+        });
+
+
+        $(function() {
+            $('.navbar-toggle-sidebar').click(function() {
+                $('.navbar-nav').toggleClass('slide-in');
+                $('.side-body').toggleClass('body-slide-in');
+                $('#search').removeClass('in').addClass('collapse').slideUp(200);
+            });
+
+
+
+
+            $('#search-trigger').click(function() {
+                $('.navbar-nav').removeClass('slide-in');
+                $('.side-body').removeClass('body-slide-in');
+                $('.search-input').focus();
+            });
+        });
+
+
+        $('#log-out').click(function() {
+            localStorage.removeItem('A-Token');
+        });
+
+        //Ховаємо алерти
+        $('.alert-autocloseable-success').hide();
+        $('.alert-autocloseable-danger').hide();
+
+
+
+
+        //////////////////////////////PHOTO EFFECT///////////////////////////
+
+        $(document).on('click', '#close-preview', function() {
+            $('.image-preview').popover('hide');
+            // Hover befor close the preview
+            $('.image-preview').hover(
+                function() {
+                    $('.image-preview').popover('show');
+                },
+                function() {
+                    $('.image-preview').popover('hide');
+                }
+            );
+        });
+
+        $(function() {
+            // Create the close button
+            var closebtn = $('<button/>', {
+                type: "button",
+                text: 'x',
+                id: 'close-preview',
+                style: 'font-size: initial;',
+            });
+            closebtn.attr("class", "close pull-right");
+            // Set the popover default content
+            $('.image-preview').popover({
+                trigger: 'manual',
+                html: true,
+                title: "<strong>Preview</strong>" + $(closebtn)[0].outerHTML,
+                content: "There's no image",
+                placement: 'bottom'
+            });
+            // Clear event
+            $('.image-preview-clear').click(function() {
+                $('.image-preview').attr("data-content", "").popover('hide');
+                $('.image-preview-filename').val("");
+                $('.image-preview-clear').hide();
+                $('.image-preview-input input:file').val("");
+                $(".image-preview-input-title").text("Browse");
+                $("#photo-field").attr("src", userPhoto);
+            });
+            // Create the preview image
+            $(".image-preview-input input:file").change(function() {
+                var img = $('<img/>', {
+                    id: 'dynamic',
+                    width: 250,
+                    height: 200
+                });
+                var file = this.files[0];
+                var reader = new FileReader();
+                // Set preview image into the popover data-content
+                reader.onload = function(e) {
+                    $(".image-preview-input-title").text("Change");
+                    $(".image-preview-clear").show();
+                    $(".image-preview-filename").val(file.name);
+                    img.attr('src', e.target.result);
+                    $("#photo-field").attr("src", e.target.result);
+
+                }
+                reader.readAsDataURL(file);
+            });
+        });
+
+    </script>
+
+    <!--    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,536 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>HiPasserby</title>
+    <link rel="icon" type="image/icon" href="img/faviconPng.ico">
+    <!-- Bootstrap -->
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<style>
+    body {
+        background-image: url(img/registrationPhotoBackground.jpg);
+        background-repeat: no-repeat;
+        background-position: left, right;
+        background-attachment: fixed;
+        color: #FFD;
+    }
+
+</style>
+<!--////////////////////////////////////////////////////////////////LOGIN PAGE//////////////////////////////////////////////////////////////////-->
+
+<body>
+    <div class="container-fluir" id="sign_in_container" style="display: none">
+        <div class="row main">
+            <div class="panel-heading">
+                <div class="panel-title text-center">
+                    <img src="img/oneLogo1.png" alt="" style="max-width: 100px;">
+                </div>
+            </div>
+            <div class="main-login main-center">
+                <form class="form-horizontal" method="post" action="#">
+
+                    <div class="form-group">
+                        <label for="email" class="cols-sm-2 control-label">Email</label>
+                        <span id="email-error-list-login" style="color: IndianRed"></span>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon "><i class="fa fa-envelope fa glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Email" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="password" class="cols-sm-2 control-label">Пароль</label>
+                        <span id="password-error-list-login" style="color: IndianRed"></span>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg glyphicon glyphicon-lock" aria-hidden="true"></i></span>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Пароль(від 6 до 20 символів)" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group ">
+                        <button type="button" class="btn btn-primary btn-lg btn-block login-button">Вхід</button>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="uk-overlay-panel uk-overlay-background uk-overlay-fade" style="text-align: center">
+
+
+                <div class="caption" style="text-align: center">
+                    <div class="panel-title text-center">
+                        <img src="img/oneLogo1.png" alt="" style="max-width: 100px;">
+                    </div>
+                    <h3>Логінування</h3>
+                    <p style="padding-right: 20px;padding-left: 20px">Почніть спілкуватись в HiPasserby просто зараз!</p>
+                </div>
+            </div>
+            <div class="uk-overlay-panel2 uk-overlay-background uk-overlay-fade" style="text-align: center;">
+
+                <div class="panel-title text-center">
+                    <br>
+                    <img class="loginer" src="img/login_blue.png" alt="" style="max-width: 70px;cursor: pointer">
+                    <br>
+                </div>
+
+                <div class="panel-title text-center">
+                    <br>
+                    <img class="register" src="img/register.png" alt="#" style="max-width: 70px;cursor: pointer">
+                    <br>
+                </div>
+
+
+                <div class="panel-title text-center" id="lost_password">
+                    <br>
+                    <img class="lost_password" src="img/lost_password.png" alt="" style="max-width: 70px;cursor: pointer">
+                    <!--                    id="imgTXT" -->
+                    <!--                    <div id="txtIMG" style="display: none">текст где то там за горизонтом</div>-->
+                    <br>
+                </div>
+
+                <div class="panel-title text-center" id="info">
+                    <br>
+                    <div><img class="info" src="img/info.png" alt="" style="max-width: 70px;cursor: pointer"></div>
+                    <br>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!--//////////////////////////////////////////////////////////////END LOGIN PAGE//////////////////////////////////////////////////////////-->
+
+
+    <!--//////////////////////////////////////////////////////////////START REGISTRATION PAGE////////////////////////////////////////////////// -->
+
+
+    <div class="container-fluir" id="sign_up_container">
+        <div class="row main">
+            <div class="panel-heading">
+                <div class="panel-title text-center">
+                    <img src="img/oneLogo1.png" alt="" style="max-width: 100px;">
+                </div>
+            </div>
+            <div class="main-login main-center">
+                <form class="form-horizontal" method="post" action="#">
+
+                    <div class="form-group">
+                        <label for="name" class="cols-sm-2 control-label">Ім'я</label>
+                        <span id="firstName-error-list-register" style="color: IndianRed"></span>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="name" id="firstName" placeholder="Введіть своє ім'я" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username" class="cols-sm-2 control-label">Прізвище</label>
+                        <span id="lastName-error-list-register" style="color: IndianRed"></span>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-users fa glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="username" id="lastName" placeholder="Введіть своє прізвище" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="cols-sm-2 control-label">Email</label>
+                        <span id="email-error-list-register" style="color: IndianRed"></span>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="email" id="register-email" placeholder="Введіть свій Email" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="password" class="cols-sm-2 control-label">Пароль</label>
+                        <span id="password-error-list-register" style="color: IndianRed"></span>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg glyphicon glyphicon-lock" aria-hidden="true"></i></span>
+                                <input type="password" class="form-control" name="password" id="register-password" placeholder="Придумайте пароль(від 6 до 20 символів)" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm" class="cols-sm-2 control-label ">Повторіть пароль</label>
+                        <span id="repeatPassword-error-list-register" style="color: IndianRed"></span>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg glyphicon glyphicon-lock" aria-hidden="true"></i></span>
+                                <input type="password" class="form-control" name="confirm" id="repeat-password" placeholder="Повторіть пароль" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm" class="cols-sm-2 control-label ">Стать</label>
+                        <span id="sex-error-list-register" style="color: IndianRed"></span>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg glyphicon glyphicon-adjust" aria-hidden="true"></i></span>
+                                <select class="form-control" name="confirm" id="sex" placeholder="Повторіть пароль">
+                                    <option>Чоловік</option>
+                                    <option>Жінка</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <button type="button" class="btn btn-primary btn-lg btn-block register-button">Реєстрація</button>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="uk-overlay-panel uk-overlay-background uk-overlay-fade" style="text-align: center">
+
+
+                <div class="caption" style="text-align: center">
+                    <div class="panel-title text-center">
+                        <img src="img/oneLogo1.png" alt="" style="max-width: 100px;">
+                    </div>
+                    <h3>Реєстрація</h3>
+                    <p style="padding-right: 20px;padding-left: 20px">Якщо ви ще не зареєструвались на нашому сервісі - зареєструйтесь просто зараз!</p>
+                </div>
+            </div>
+            <div class="uk-overlay-panel2 uk-overlay-background uk-overlay-fade" style="text-align: center;">
+
+                <div class="panel-title text-center">
+                    <br>
+                    <img class="loginer" src="img/login.png" alt="" style="max-width: 70px;cursor: pointer">
+                    <br>
+                </div>
+
+                <div class="panel-title text-center">
+                    <br>
+                    <img class="register" src="img/register_blue.png" alt="" style="max-width: 70px;cursor: pointer">
+                    <br>
+                </div>
+
+                <div class="panel-title text-center">
+                    <br>
+                    <img class="lost_password" src="img/lost_password.png" alt="" style="max-width: 70px;cursor: pointer">
+                    <br>
+                </div>
+
+                <div class="panel-title text-center">
+                    <br>
+                    <img class="info" src="img/info.png" alt="" style="max-width: 70px;cursor: pointer">
+                    <br>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--    ////////////////////////////////////////////////////////////////END REGISTRATION PAGE////////////////////////////////////////////////-->
+
+    <!--//////////////////////////////////////////////////////////////////////START LOST PASSWORD PAGE///////////////////////////////////////////-->
+
+    <div class="container-fluir" id="lost_password_container">
+        <div class="row main">
+            <div class="panel-heading">
+                <div class="panel-title text-center">
+                    <img src="img/oneLogo1.png" alt="" style="max-width: 100px;">
+                </div>
+            </div>
+            <div class="main-login main-center">
+                <form class="form-horizontal" method="post" action="#">
+
+                    <div class="form-group">
+                        <label for="email" class="cols-sm-2 control-label">Email</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Email" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <button type="button" class="btn btn-primary btn-lg btn-block login-button">Надіслати лист</button>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="uk-overlay-panel uk-overlay-background uk-overlay-fade" style="text-align: center">
+
+
+                <div class="caption" style="text-align: center">
+                    <div class="panel-title text-center">
+                        <img src="img/oneLogo1.png" alt="" style="max-width: 100px;">
+                    </div>
+                    <h3>Забули пароль?</h3>
+                    <p style="padding-right: 20px;padding-left: 20px">Ми надішлемо на вашу пошту лист з посиланням, перейшовши за яким, ви зможете створити новий пароль та відновити доступ до свого акаунту!</p>
+                </div>
+            </div>
+
+            <div class="uk-overlay-panel2 uk-overlay-background uk-overlay-fade" style="text-align: center;">
+
+                <div class="panel-title text-center">
+                    <br>
+                    <img class="loginer" src="img/login.png" alt="" style="max-width: 70px;cursor: pointer">
+                    <br>
+                </div>
+
+                <div class="panel-title text-center">
+                    <br>
+                    <img class="register" src="img/register.png" alt="" style="max-width: 70px;cursor: pointer">
+                    <br>
+                </div>
+
+                <div class="panel-title text-center">
+                    <br>
+                    <img class="lost_password" src="img/lost_password_blue.png" alt="" style="max-width: 70px;cursor: pointer">
+                    <br>
+                </div>
+
+                <div class="panel-title text-center">
+                    <br>
+                    <img class="info" src="img/info.png" alt="" style="max-width: 70px;cursor: pointer">
+                    <br>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!--    /////////////////////////////////////////END LOST PASSWORD PAGE//////////////////////////////////////////////////////////////////////-->
+
+
+
+
+    <script>
+        ///////////////////////START RIGHT BUTTONS_MENU STYLE/CLICK ///////////////////
+
+        $("#sign_in_container").show(1300);
+        $("#lost_password_container").hide(0);
+        $("#sign_up_container").hide(0);
+
+        $('.loginer').click(function() {
+
+
+            $("#sign_up_container").hide(1000);
+            $("#lost_password_container").hide(1000);
+            $("#sign_in_container").show(1000);
+
+
+        });
+
+
+        $('.register').click(function() {
+
+            $("#sign_in_container").hide(1000);
+            $("#lost_password_container").hide(1000);
+            $("#sign_up_container").show(1300);
+
+        });
+
+
+
+        $('.lost_password').click(function() {
+
+
+            $("#sign_in_container").hide(1000);
+            $("#sign_up_container").hide(1000);
+            $("#lost_password_container").show(1300);
+
+
+        });
+
+        ///////////////////////END RIGHT BUTTONS_MENU STYLE/CLICK ///////////////////
+
+
+        ///////////////////////START LOGiN/REGISTER/SEND OPERATIOND ///////////////////
+
+
+        $('.login-button').click(function() {
+            $('#email-error-list-login').empty();
+            $('#password-error-list-login').empty();
+            var email = $('#email').val();
+            var password = $('#password').val();
+            var loginRequest = {
+                'email': email,
+                'password': password
+            };
+            $.ajax({
+                'url': 'http://hipasserby.com:8080/login',
+                'type': "POST",
+                'contentType': 'application/json',
+                'dataType': 'json',
+                'data': JSON.stringify(loginRequest),
+                'success': function(data) {
+
+                    localStorage.clear();
+                    localStorage.setItem(data.key, data.value);
+                    console.log(localStorage.getItem("A-Token"));
+                    getUser();
+                },
+                'error': function(error) {
+                    if (JSON.parse(error.responseText).message == "Невірна адреса або пароль!") {
+                        $('#email-error-list-login').append(JSON.parse(error.responseText).message);
+                        $('#password-error-list-login').append(JSON.parse(error.responseText).message);
+                    } else if (JSON.parse(error.responseText).message == "Пароль може складатись з 6-20 символів!") {
+                        $('#password-error-list-login').append(JSON.parse(error.responseText).message);
+                    } else if (JSON.parse(error.responseText).message == "В email-адресі повинен бути присутній символ \"@\"!") {
+                        $('#email-error-list-login').append(JSON.parse(error.responseText).message);
+                    } else if (JSON.parse(error.responseText).message == "Email-адреса не може містити менше 6 символів!") {
+                        $('#email-error-list-login').append(JSON.parse(error.responseText).message);
+                    } else {
+                        $('#email-error-list-login').append("Невідома помилка!");
+                    }
+                }
+            });
+        });
+
+        function getUser() {
+
+            $.ajax({
+                "url": "http://hipasserby.com:8080/login",
+                'method': 'GET',
+                'contentType': 'application/json',
+                'dataType': 'json',
+                'headers': {
+                    'A-Token': localStorage.getItem('A-Token'),
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                'success': function(data) {
+                    document.location = "user.html?id=" + data.id;
+                },
+                'error': function(error) {
+                    console.log(error);
+                    document.location.href = 'index.html';
+                }
+            });
+
+        }
+
+
+        $('.register-button').click(function() {
+            $('#firstName-error-list-register').empty();
+            $('#lastName-error-list-register').empty();
+            $('#email-error-list-register').empty();
+            $('#password-error-list-register').empty();
+            $('#repeatPassword-error-list-register').empty();
+            $('#sex-error-list-register').empty();
+
+            var firstName = $('#firstName').val();
+            var lastName = $('#lastName').val();
+            var email = $('#register-email').val();
+            var password = $('#register-password').val();
+            var repeatPassword = $('#repeat-password').val();
+            var sex;
+            if ($('#sex').val() == 'Чоловік') {
+                sex = 0;
+            } else if ($('#sex').val() == 'Жінка') {
+                sex = 1;
+            } else {
+                sex = 0;
+            }
+
+            var registerRequest = {
+                'firstName': firstName,
+                'lastName': lastName,
+                'email': email,
+                'password': password,
+                'repeatPassword': repeatPassword,
+                'sex': sex
+            };
+            $.ajax({
+                'url': 'http://hipasserby.com:8080/hipasserby-0.0.1-SNAPSHOT/signup',
+                'type': "PUT",
+                'contentType': 'application/json',
+                'dataType': 'json',
+                'data': JSON.stringify(registerRequest),
+                'success': function(data) {
+                    if (data == true) {
+                        document.location.href = 'activation.html';
+                    }
+                },
+                'headers': {
+                    'A-Token': localStorage.getItem('A-Token'),
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                'error': function(error) {
+                    console.log(error);
+//                    if ((JSON.parse(error.responseText).message == "Вказана електронна адреса вже зареєстрована!") || (JSON.parse(error.responseText).message == "Невірний формат email!")) {
+//                        $('#email-error-list-register').append(JSON.parse(error.responseText).message);
+//                    } else if (JSON.parse(error.responseText).message == "Невірний формат імені!") {
+//                        $('#firstName-error-list-register').append(JSON.parse(error.responseText).message);
+//                    } else if (JSON.parse(error.responseText).message == "Невірний формат прізвища!") {
+//                        $('#lastName-error-list-register').append(JSON.parse(error.responseText).message);
+//                    } else if (JSON.parse(error.responseText).message == "Пароль може складатись з 8-25 символів!") {
+//                        $('#password-error-list-register').append(JSON.parse(error.responseText).message);
+//                    } else if (JSON.parse(error.responseText).message == "Паролі не співпадають!") {
+//                        $('#password-error-list-register').append(JSON.parse(error.responseText).message);
+//                        $('#repeatPassword-error-list-register').append(JSON.parse(error.responseText).message);
+//                    } else if (JSON.parse(error.responseText).message == "Невірно вказана стать!") {
+//                        $('#sex-error-list-register').append(JSON.parse(error.responseText).message);
+//                    } else {
+//                        $('#email-error-list-register').append("Невідома помилка!");
+//                        $('#firstName-error-list-register').append("Невідома помилка!");
+//                        $('#lastName-error-list-register').append("Невідома помилка!");
+//                        $('#password-error-list-register').append("Невідома помилка!");
+//                        $('#repeatPassword-error-list-register').append("Невідома помилка!");
+//                        $('#sex-error-list-register').append("Невідома помилка!");
+//                    }
+                }
+            });
+        });
+
+        ///////////////////////END LOGiN/REGISTER/SEND OPERATIOND ///////////////////
+
+
+        //        $.ajax({
+        //            "url": "http://hipasserby.com:8080/login",
+        //            'method': 'GET',
+        //            'contentType': 'application/json',
+        //            'dataType': 'json',
+        //            'headers': {
+        //                'A-Token': localStorage.getItem('A-Token'),
+        //                'Content-Type': 'application/json;charset=utf-8'
+        //            },
+        //            'success': function(data) {
+        //                document.location.href = 'user.html';
+        //            },
+        //            'error': function(error) {
+        //
+        //            }
+        //        });
+
+    </script>
+
+
+    <!--    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

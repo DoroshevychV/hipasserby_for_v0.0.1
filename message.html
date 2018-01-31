@@ -1,0 +1,614 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title id="title">Діалог</title>
+    <link rel="icon" type="image/icon" href="img/faviconPng.ico">
+    <!-- Bootstrap -->
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/userStyle.css">
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/messageStyle.css" />
+    <link rel="stylesheet" href="css/dialogStyle.css" />
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="http://bootstrap-ru.com/204/assets/js/bootstrap-tab.js"></script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+
+    <script src="http://bootstrap-ru.com/204/assets/js/bootstrap-dropdown.js"></script>
+
+
+</head>
+
+<style>
+    * {
+        outline: 0 !important;
+        font-family: ubuntu;
+    }
+
+    li {
+        list-style-type: none;
+        /* Убираем маркеры */
+    }
+
+    body {
+        font-size: 13px;
+    }
+
+    .navbar-default .navbar-nav>li>a {
+        color: whitesmoke;
+    }
+
+    .navbar-default .navbar-nav>li>a:hover {
+        color: #162449;
+        background: whitesmoke;
+    }
+
+    .navbar-default .navbar-toggle:hover {
+        background-color: transparent;
+        color: whitesmoke;
+
+    }
+
+    .navbar-default .navbar-toggle {
+        border: none;
+    }
+
+    button.navbar-toggle.collapsed.glyphicon.glyphicon-menu-hamburger {
+        color: whitesmoke;
+    }
+
+    button.navbar-toggle.collapsed.glyphicon.glyphicon-menu-hamburger:focus {
+        color: whitesmoke;
+        background-color: transparent;
+    }
+
+    container {
+        padding-left: 0px;
+        padding-right: 0px;
+        width: 100%;
+    }
+
+    /*    ///////////////////////////*/
+
+    .nav-tabs {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary {
+        background-color: rgba(0, 0, 0, 0.1);
+        border: none;
+        color: #337ab7;
+    }
+
+    .btn-primary:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+        border: none;
+        color: #337ab7;
+    }
+
+    .form-horizontal .control-label {
+        font-weight: 100;
+    }
+
+    /*    ///////////////////Photo style///////////////////*/
+
+    .image-preview-input {
+        position: relative;
+        overflow: hidden;
+        margin: 0px;
+        color: #333;
+        background-color: #fff;
+        border-color: #ccc;
+    }
+
+    .image-preview-input input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+
+    .image-preview-input-title {
+        margin-left: 2px;
+    }
+
+    .profile-sidebar {
+
+        padding: 20px;
+        /*        margin-top: 20px;*/
+    }
+
+    @media (max-width: 395px) {
+
+
+        .col-md-12 {
+            padding-left: 0px;
+            padding-right: 0px;
+            width: 100%;
+        }
+
+        .profile-sidebar {
+            padding: 0;
+            /*
+            margin-bottom: 20px;
+            margin-top: 20px;
+*/
+        }
+        .main-dialog {
+            display: block;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            background-color: rgba(0, 0, 0, 0.1);
+            max-height: 90px;
+            padding-top: 10px;
+            padding-bottom: 110px;
+            padding-left: 10px;
+        }
+
+    }
+
+    #dialoger-photo-right {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+    }
+
+    #dialoger-photo-left {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0px;
+        /* remove scrollbar space */
+        background: transparent;
+        /* optional: just make scrollbar invisible */
+    }
+
+    /* optional: show position indicator in red */
+
+    ::-webkit-scrollbar-thumb {
+        background: #FF0000;
+    }
+
+    #dialoger {}
+
+</style>
+
+<body>
+ <div class="container-fluid" style="padding-left: 0;padding-right: 0">
+        <header>
+            <nav class="navbar navbar-static-top">
+                        <div style="background-color: #4d75a3;">
+<!--
+                <div class="container-fluid" style="background-color: #162449;    border-radius: 73px;
+                    border-top-left-radius: 70px;
+                    border-top-right-radius: 70px;
+                    border-bottom-right-radius: 70px;
+                    border-bottom-left-radius: 70px;">
+-->
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle navbar-toggle-sidebar collapsed" id="myMethod">Меню</button>
+                        <a class="navbar-brand" href="user.html">
+				        <img src="img/IndexLogo.png" style="max-width: 115px;">
+				        </a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <form class="navbar-form navbar-right">
+                            <!--
+                            <div class="form-group">
+                                <input type="text" name="q" class="form-control" placeholder="Search">
+                            </div>
+                            <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+-->
+                        </form>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
+        </header>
+    </div>
+    <div class="container" style="">
+
+
+        <main>
+
+            <div class="col-sm-1 col-md-2 col-lg-2">
+                <div class="row">
+                    <!-- uncomment code for absolute positioning tweek see top comment in css -->
+                    <!-- Menu -->
+                    <div class="side-menu">
+                        <nav class="navbar navbar-default" role="navigation">
+                            <!-- Main Menu -->
+                            <div class="side-menu-container">
+                                <ul class="nav navbar-nav">
+                                    <li class="active" onclick="getUser()"><a href="user.html"><span class="glyphicon glyphicon-home"></span> Моя сторінка</a></li>
+                                    <li class="active"><a href="#"><span class="glyphicon glyphicon-comment"></span> Новини</a></li>
+                                    <li class="active"><a href="#"><span class="glyphicon glyphicon-user"></span> Друзі</a></li>
+                                    <li class="active"><a href="dialog.html"><span class="glyphicon glyphicon-envelope"></span> Повідомлення<span class="badge" id="message-incoming" style="margin-left: 5px"></span></a></li>
+                                    <li class="active"><a href="edit_my_informations.html"><span class="glyphicon glyphicon-wrench"></span> Налаштування</a></li>
+                                    <li class="active"><a href="search.html"><span class="glyphicon glyphicon-search"></span> Пошук</a></li>
+                                    <li class="active" id="log-out"><a href="index.html"><span class="glyphicon glyphicon-log-out"></span> Вихід</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row profile">
+                    <div class="col-lg-9">
+                        <!--                        <div class="profile-sidebar" style="padding: 2px;">-->
+
+
+                        <!--                                    <input type="text" class="search-query form-control" placeholder="Search"/>-->
+
+                        <!--
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon" style="border: 0;background-color: rgba(0,0,0,0)"><i class="fa fa-envelope fa glyphicon glyphicon-search" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" id="search-dialog" style="border: 0;background-color: rgba(0,0,0,0);outline: none" placeholder="Пошук..." />
+                                </div>
+                            </div>
+
+                        </div>
+-->
+
+                        <!--                       //Dialogs list-->
+                        <!--
+                        <div class="profile-sidebar" style="margin-top: 20px;">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 count-dialog-class" style="margin-bottom: 30px;">
+                                <span class="count-field">Діалог з <span id="users"></span> / <span id="count-message"></span> повідомлень(ня)</span>
+                            </div>
+-->
+
+
+                        <div class="container-fluid" style="padding-left: 0;padding-right: 0">
+
+                            <div class="panel panel-default" style="border-color: white;">
+
+                                <div class="panel-heading text-center" style="background-color: white;">
+                                    <div class="row">
+                                        <!--
+                                            <div class="col-md-2">
+                                                <div class="icon"><span class="">19 sms</span></div>
+                                            </div>
+-->
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <span id="dialoger" style="color: #5a7391"></span> <span style="color: #5a7391;">/</span><span style="color: #5a7391;font">В діалозі <span id="count-message" style="color: #5a7391;font-weight: bolder">0</span> повідомлення(нь)</span>
+                                        </div>
+                                        <!--
+                                            <div class="col-md-offset-3 col-md-2">
+                                                <div class="icon"><span class="glyphicon glyphicon-info-sign"></span></div>
+                                            </div>
+-->
+                                    </div>
+                                </div>
+
+                                <div class="panel-body" id="panel-body-id">
+
+                                    <div class="row">
+
+                                    </div>
+                                    <div class="row">
+
+                                    </div>
+
+
+                                </div>
+                                <div class="panel-footer">
+                                    <form>
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                 <button data-toggle="modal" href="#modal-photo" class="btn btn-default" type="button"><span class="glyphicon glyphicon-camera"></span></button>
+                                            </span>
+                                            <input id="message-text" type="text" class="form-control" placeholder="Напишіть сюди своє повідомлення">
+                                            <span class="input-group-btn">
+                                                <button id="envoi" class="btn btn-default" type="button"><span class="glyphicon glyphicon-send"></span></button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                            <div class="modal" id="modal-photo">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">x</button>
+                                            <h4 class="modal-title">Оберіть фото</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <input type="file" name="photo" id="photo" accept="image/*">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button id="validation" class="btn btn-primary">Відправити</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!--                        </div>-->
+                        <!--                        //End dialog list-->
+
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="pull-left footer" style="text-align: center">
+            <p class="col-md-12">
+                <hr class="divider"> Copyright &COPY; 2018 <a href="#">HiPasserby</a>
+        </footer>
+
+    </div>
+
+    <script>
+        var thisUser = {
+            'id': 0
+        };
+
+        $.ajax({
+            "url": "http://localhost:8080/login",
+            'method': 'GET',
+            'contentType': 'application/json',
+            'dataType': 'json',
+            'headers': {
+                'A-Token': localStorage.getItem('A-Token'),
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            'success': function(data) {
+                thisUser.id = data.id;
+            },
+        });
+
+        var dialogId;
+
+        var pageHref = location;
+        //перетворюємо в стрічку
+        var stroka = pageHref.toString();
+        //шукаємо символ підходящого "id="    
+        // вирізаємо все після цього символу
+        var result = stroka.slice(stroka.search(/id=/) + 3);
+
+        getMessages(result);
+
+        function getMessages(Object) {
+            var findOneByIdRequest = {
+                'id': Object
+            };
+            dialogId = Object;
+            //            $('#panel-body').empty();
+            $.ajax({
+                "url": "http://localhost:8080/message",
+                'method': 'POST',
+                'contentType': 'application/json',
+                'dataType': 'json',
+                'data': JSON.stringify(findOneByIdRequest),
+                'headers': {
+                    'A-Token': localStorage.getItem('A-Token'),
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                'success': function(data) {
+
+
+
+                    for (var i = 0; i < data.length; i++) {
+
+                        if (data[i].author.id != thisUser.id) {
+                            $('#dialoger').empty();
+                            $('#dialoger').append("Діалог з користувачем " + "<span onclick='goUser(" + data[i].author.id + ")' style='font-weight: bolder;cursor: pointer'>" + data[i].author.firstName + " " + data[i].author.lastName) + "</span>";
+                            $('#count-message').empty();
+                            $('#count-message').append(data.length-2);
+                            $('#title').empty();
+                            $('#title').append("Діалог з " + data[i].author.firstName + " " + data[i].author.lastName);
+                            $(".row:last").after('<img class="imf-responsive img-circle pull-left" id="dialoger-photo-right" src="' + "http://localhost:8080" + data[i].author.photo + '" onclick="goUser(' + data[i].author.id + ')" alt="" style="margin-right: 5px;cursor: pointer"><div class="row"><div class="message message-in pull-left">' + data[i].text + '</div></div>');
+
+                        } else {
+                            $(".row:last").after('<img class="imf-responsive img-circle pull-right" id="dialoger-photo-right" src="' + "http://localhost:8080" + data[i].author.photo + '" onclick="goUser(' + data[i].author.id + ')" alt="" style="margin-right: 5px;cursor: pointer"><div class="row"><div class="message message-out pull-right">' + data[i].text + '</div></div>');
+                        }
+                        scrollDown();
+                    }
+                },
+                'error': function(error) {
+                    console.log(error);
+                }
+            });
+
+        }
+
+        $('html').keydown(function(eventObject) { //отлавливаем нажатие клавиш
+            if (event.keyCode == 13) { //если нажали Enter, то true
+                event.preventDefault();
+                return false;
+            }
+            if(event.which==13){
+                   event.preventDefault();
+                return false;
+                }
+        });
+
+
+        $(function() {
+            $("#message-text").keyup(function(event) {
+                if (event.keyCode == 13) { //если нажали Enter, то true
+                    clickSend();
+                }
+            });
+            $(document).bind("keypress", function(event) {
+                event = event || window.event;
+                var str = String.fromCharCode(event.charCode);
+                if(event.which==13){
+                    clickSend();
+                    return false;
+                }
+            });
+            $('#envoi').on('click', function() {
+                clickSend();
+            });
+
+        });
+
+        function clickSend() {
+            var message_text = $('#message-text').val();
+            var idDialog = dialogId;
+            if (message_text !== '') {
+
+                var message = {
+                    "text": message_text,
+                    "dialog": {
+                        "id": result
+                    }
+                };
+
+                $.ajax({
+                    "url": "http://localhost:8080/message/create",
+                    'method': 'PUT',
+                    'contentType': 'application/json',
+                    'dataType': 'json',
+                    'data': JSON.stringify(message),
+                    'async': false,
+                    'headers': {
+                        'A-Token': localStorage.getItem('A-Token'),
+                        'Content-Type': 'application/json;charset=utf-8'
+                    },
+                    'success': function(data) {
+
+                        $(".row:last").after('<img class="imf-responsive img-circle pull-right" id="dialoger-photo-right" src="' + "http://localhost:8080" + data.author.photo + '" onclick="goUser(' + data.author.id + ')" alt="" style="margin-right: 5px;cursor: pointer"><div class="row"><div class="message message-out pull-right">' + data.text + '</div></div>');
+                        $('#message-text').val('');
+                        var a = $('span#count-message').text();
+                        var countMessage = parseInt(a);
+                        $('#count-message').empty();
+                        $('#count-message').append(countMessage + 1);
+
+                    },
+                    'error': function(error) {
+                        alert("Неможливо зберегти таке велике повідомлення!");
+                    }
+                });
+
+            }
+            scrollDown();
+        }
+
+        function getUser() {
+
+            $.ajax({
+                "url": "http://localhost:8080/login",
+                'method': 'GET',
+                'contentType': 'application/json',
+                'dataType': 'json',
+                'headers': {
+                    'A-Token': localStorage.getItem('A-Token'),
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                'success': function(data) {
+                    document.location = "user.html?id=" + data.id;
+                },
+                'error': function(error) {
+                    console.log(error);
+                    document.location.href = 'index.html';
+                }
+            });
+
+        }
+        
+        $(function() {
+
+            $.ajax({
+                "url": "http://localhost:8080/dialog/notification",
+                'method': 'GET',
+                'contentType': 'application/json',
+                'dataType': 'json',
+                'headers': {
+                    'A-Token': localStorage.getItem('A-Token'),
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                'success': function(data) {
+                    //                    var count = $('#message-incoming').val();
+                    if (data > 0) {
+                        $('#message-incoming').append(data);
+                        $('#title').prepend("(" + data + ")");
+                    }
+                },
+                'error': function(error) {
+                    console.log(error);
+                }
+            });
+        });
+
+        function goUser(Object) {
+            var id = Object;
+
+            document.location = "user.html?id=" + id;
+        }
+
+
+        function scrollDown() {
+            var someElement = document.querySelector('#panel-body-id');
+            someElement.scrollTop = someElement.scrollHeight;
+        }
+
+
+        $(window).resize(function() {
+            var width = $(window).width();
+            if (width < 1200) {
+                $("#myMethod").collapse('hide');
+            }
+        });
+
+
+        $(function() {
+            $('.navbar-toggle-sidebar').click(function() {
+                $('.navbar-nav').toggleClass('slide-in');
+                $('.side-body').toggleClass('body-slide-in');
+                $('#search').removeClass('in').addClass('collapse').slideUp(200);
+            });
+
+
+
+
+            $('#search-trigger').click(function() {
+                $('.navbar-nav').removeClass('slide-in');
+                $('.side-body').removeClass('body-slide-in');
+                $('.search-input').focus();
+            });
+        });
+
+
+        //Вихід з аккаунту
+        $('#log-out').click(function() {
+            localStorage.removeItem('A-Token');
+        });
+
+    </script>
+
+    <!--    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
